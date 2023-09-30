@@ -139,10 +139,10 @@ est store GastosDurables1
 reg nondurable_exp_mo_pc_1 treatment $Xa [aweight=w1], cluster (areaid)
 est store GastosNoDurables1
 
-reg nondurable_exp_mo_pc_1 treatment $Xa [aweight=w1], cluster (areaid)
+reg temptation_exp_mo_pc_1 treatment $Xa [aweight=w1], cluster (areaid)
 est store GastosTentacion1
 
-outreg2 [GastosTotales1 GastosDurables1 GastosNoDurables1 GastosTentacion1] using Tabla_reg_Punto8.doc
+outreg2 [GastosTotales1 GastosDurables1 GastosNoDurables1 GastosTentacion1] using Tabla_reg_Punto8.doc, drop ($Xa _cons) title("Efectos de las microfinanzas en el consumo")
 
 
 * 9. Replique el cuadro 7 panel A, columnas 1 a 7 para obtener los efectos sociales de las microfinanzas. Explique la intuición detrás de los resultados y la conclusión general.
@@ -170,7 +170,8 @@ est store Ninos_16a20_Colegio
 reg women_emp_index_1 treatment $Xa [aweight=w1], cluster (areaid)
 est store IndiceEmpFem
 
-outreg2 [Ninas_5a15_Colegio Ninos_5a15_Colegio Ninas_5a15_HrsTrbj Ninos_5a15_HrsTrbj Ninas_16a20_Colegio Ninos_16a20_Colegio IndiceEmpFem] using Tabla_reg_Punto9.doc
+outreg2 [Ninas_5a15_Colegio Ninos_5a15_Colegio Ninas_5a15_HrsTrbj Ninos_5a15_HrsTrbj Ninas_16a20_Colegio Ninos_16a20_Colegio IndiceEmpFem] using Tabla_reg_Punto9.doc, drop ($Xa _cons) title("Efectos sociales en las microfinanzas")
+
 
 *11) Tome las estimaciones ITT de beneficios de la tabla 3, columna 4 (beneficios), Panel B, línea final 2. ¿Cuál es el intervalo de confianza del 95% de este coeficiente? Exprese estos valores en porcentaje (%) de la media de control (penúltima línea de la tabla). Interprete en una oración este intervalo de confianza (usando el porcentaje de medias de control). Teniendo esto en cuenta, ¿sostendría usted que los resultados nos permiten rechazar la hipótesis que la presencia de la IMF haya tenido algún impacto económicamente significativo en las ganancias del trabajo por cuenta propia?
 
