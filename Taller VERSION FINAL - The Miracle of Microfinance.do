@@ -209,9 +209,9 @@ areg total_exp_mo_pc_1 anymfi_1, absorb(areaid) cluster (areaid)
 
 * Regresion instrumentando por Spandana 
 
-ivreg2 bizassets_1 (anymfi_1=spandana_1) $Xa, cluster(areaid)
+ivreg2 bizassets_1 (anymfi_1=treatment) $Xa, cluster(areaid)
 est store ActivosIV_1
-ivreg2 total_exp_mo_pc_1  (anymfi_1=spandana_1) $Xa, cluster(areaid)
+ivreg2 total_exp_mo_pc_1  (anymfi_1=treatment) $Xa, cluster(areaid)
 est store ConsumoIV_1
 
 outreg2 [ActivosIV_1 ConsumoIV_1] using Tabla_reg_Punto11.doc
@@ -222,10 +222,6 @@ outreg2 [ActivosIV_1 ConsumoIV_1] using Tabla_reg_Punto11.doc
 
 *13) Utilizando la especificación de IV descrita anteriormente, ¿cuál es la tasa de cumplimiento en el período 1? (Pista: puede encontrarla directamente en la tabla 2, que es equivalente a la primera etapa de la IV) ¿Parece alto o bajo? Interprete
 
-
-reg spandana_1 treatment $Xa area_debt_total_base [aweight=w1]
-est store Primera_Etapa_a 
-
 reg anymfi_1 treatment $Xa area_debt_total_base [aweight=w1] 
 est store Primera_Etapa_b
 
@@ -235,7 +231,7 @@ outreg2 [Primera_Etapa_a Primera_Etapa_b] using Tabla_reg_Punto13.doc
 
 *Ganancias
 
-ivreg2 bizprofit_1 (anymfi_1=spandana_1) $Xa area_debt_total_base, cluster(areaid)
+ivreg2 bizprofit_1 (anymfi_1=treatment) $Xa area_debt_total_base, cluster(areaid)
 est store GananciasIV_1
 
 * Intervalo de Confianza - Ganancias
@@ -257,7 +253,7 @@ sum PMC2
 
 * Consumo Mensual
 
-ivreg2 total_exp_mo_pc_1 (anymfi_1=spandana_1) $Xa area_debt_total_base, cluster(areaid)
+ivreg2 total_exp_mo_pc_1 (anymfi_1=treatment) $Xa area_debt_total_base, cluster(areaid)
 est store ConsumoIV_2
 
 * Intervalo de Confianza - Consumo
