@@ -311,7 +311,8 @@ histogram indice, xline(60) bins(200)
 kdensity indice, xline(60)
 
 *Se observa un salto en el umbral
-
+rddensity indice, c(60)
+*Valor muy significativo, por lo que se evidencia manipulación
 
 *Punto 20 prueba de robustez. Puede por ejemplo ajustar la forma funcional o cambiar el ancho de banda.
 
