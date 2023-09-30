@@ -278,6 +278,8 @@ sum PMC3
 outreg2 [GananciasIV_1 ConsumoIV_2] using Tabla_reg_Punto14.doc
 
 *Punto 17: Verificar selección:
+*Creamos global de controles de área (estoy utilizando los que mencionan en el paper)
+global area_controles area_pop_base area_business_total_base area_exp_pc_mean_base area_literate_head_base area_literate_base
 *Primero mediante una regresión simple vemos que el índice tiene un coeficiente significativo y positivo sobre el tratamiento
 
 reg treatment indice $area_controles, cluster(areaid)
