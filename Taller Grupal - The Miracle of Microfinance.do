@@ -38,11 +38,16 @@ global CONTROLES  total_exp_mo_pc_1 durables_exp_mo_pc_1 temptation_exp_mo_pc_1
 
 ** Regresion con Controles y Efectos Fijos 
 
-areg bizassets_1 anymfi_1 $CONTROLES, absorb(areaid),cluster(areaid)
+areg bizassets_1 anymfi_1 $CONTROLES, absorb(areaid) cluster(areaid)
+eststo Controles_sobre_activos
 
-areg bizinvestment_1 anymfi_1 $CONTROLES, absorb(areaid) cluster(areaid)
+areg bizinvestment_1 anymfi_1 $CONTROLES, absorb(areaid)cluster(areaid)
+eststo Controles_inversion_12m
 
 areg bizprofit_1 anymfi_1 $CONTROLES, absorb(areaid) cluster(areaid)
+eststo Controles_Sobre_Ganancias
+
+outreg2 [Controles_sobre_activos Controles_inversion_12m Controles_Sobre_Ganancias] using Tabla_reg_controles.doc, replace
 
 * Variable Instrumental y Efectos aleatorios – Replicación, interpretación y extensión
 
