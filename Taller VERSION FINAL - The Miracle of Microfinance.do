@@ -278,9 +278,10 @@ sum PMC3
 outreg2 [GananciasIV_1 ConsumoIV_2] using Tabla_reg_Punto14.doc
 
 *Punto 17: Verificar selección:
+*Primero mediante una regresión simple vemos que el índice tiene un coeficiente significativo y positivo sobre el tratamiento
+
 *Creamos global de controles de área (estoy utilizando los que mencionan en el paper)
 global area_controles area_pop_base area_business_total_base area_exp_pc_mean_base area_literate_head_base area_literate_base
-*Primero mediante una regresión simple vemos que el índice tiene un coeficiente significativo y positivo sobre el tratamiento
 
 reg treatment indice $area_controles, cluster(areaid)
 
@@ -289,7 +290,7 @@ scatter treatment indice
 
 *Punto 18: efecto del tratamiento sobre bizassets_1, bizinvestment_1 y biz_profit1
 
-*Generamos tratamiento
+*Generamos interacción de tratamiento
 gen X_T = indice*treatment
 	
 reg bizassets_1 treatment indice $area_controles if inrange(indice, 50, 70) [pweight=w1], cluster(areaid)
@@ -301,12 +302,11 @@ est store InversionRD
 reg bizprofit_1 treatment indice $area_controles if inrange(indice, 50, 70) [pweight=w1], cluster(areaid)
 est store GananciasRD
 
-outreg2 [ActivosRD InversionRD InversionRD] using Tabla_reg_Punto18.doc
+outreg2 [ActivosRD InversionRD InversionRD] using Tabla_reg_Punto18.doc, drop ($Xa _cons) title("Regresiones discontinuas")
 
 /*Punto 19: Prueba para evaluar el supuesto de identificación (pueden por ejemplo averiguar la ausencia de agrupamiento (o bunching) alrededor del corte, o averiguar que los controles predeterminados no parecen afectados por el tratamiento con la especificación de RD */
 
 
-**comprobación de supuestos**
 
 *Asignación-manipulación (variable de asignación: indice)
 
@@ -314,6 +314,7 @@ histogram indice, xline(60) bins(200)
 kdensity indice, xline(60)
 
 *Se observa un salto en el umbral
+
 rddensity indice, c(60)
 *Valor muy significativo, por lo que se evidencia manipulación
 
@@ -330,7 +331,7 @@ est store InversionPr
 reg bizprofit_1 treatment indice X_T $area_controles if inrange(indice, 50, 70) [pweight=w1], cluster(areaid)
 est store GananciasPr
 
-outreg2 [ActivosPr InversionPr InversionPr] using Tabla_reg_Punto20.doc
+outreg2 [ActivosPr InversionPr InversionPr] using Tabla_reg_Punto20.doc, drop ($Xa _cons) title("Pruebas de robustez: usando polinomio")
 
 *Al usarlo, los resultados en bizassets_1 se vuelven significativos
 
@@ -345,8 +346,6 @@ est store InversionPr2
 reg bizprofit_1 treatment indice X_T $area_controles if inrange(indice, 55, 65) [pweight=w1], cluster(areaid)
 est store GananciasPr2
 
-outreg2 [ActivosPr2 InversionPr2 InversionPr2] using Tabla_reg_Punto20b.doc
+outreg2 [ActivosPr2 InversionPr2 InversionPr2] using Tabla_reg_Punto20b.doc, drop ($Xa _cons) title("Pruebas de robustez: cambio de umbrales (55-65)")
 
 *Los signos cambian, por lo que la intuición puede no ser correcta
-
-
