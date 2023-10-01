@@ -66,41 +66,42 @@ global Xa area_pop_base area_business_total_base area_exp_pc_mean_base area_lite
  * Acceso al Credito 
  
 reg spandana_1 treatment $Xa area_debt_total_base [aweight=w1], cluster (areaid)
-est store SpandanaAcc1
+stesto SpandanaAcc1
 
 reg othermfi_1 treatment $Xa area_debt_total_base [aweight=w1], cluster (areaid)
-est store OtraMFIAcc1
+stesto store OtraMFIAcc1
 
 reg anymfi_1 treatment $Xa area_debt_total_base [aweight=w1], cluster (areaid)
-est store MFIAcc1 
+stesto store MFIAcc1 
 
 reg anybank_1 treatment $Xa area_debt_total_base [aweight=w1], cluster (areaid)
-est store BancoAcc1
+stesto store BancoAcc1
 
 reg anyinformal_1 treatment $Xa area_debt_total_base [aweight=w1], cluster (areaid)
-est store InformalAcc1
+stesto store InformalAcc1
 
-outreg2 [SpandanaAcc1 OtraMFIAcc1 MFIAcc1 BancoAcc1 InformalAcc1] using Tabla_reg_Punto6.doc
+*este caso solo si se quiere exportar el punto A //outreg2 [SpandanaAcc1 OtraMFIAcc1 MFIAcc1 BancoAcc1 InformalAcc1] using Tabla_reg_Punto6.doc//
 
 * Montos de los Prestamos
 
 reg spandana_amt_1 treatment $Xa area_debt_total_base [aweight=w1], cluster (areaid)
-est store SpandanaMonto1
+stesto SpandanaMonto1
 
 reg othermfi_amt_1 treatment $Xa area_debt_total_base [aweight=w1], cluster (areaid)
-est store OtraMFIMonto1
+stesto OtraMFIMonto1
 
 reg anymfi_amt_1 treatment $Xa area_debt_total_base [aweight=w1], cluster (areaid)
-est store MFIMonto1 
+stesto MFIMonto1 
 
 reg bank_amt_1 treatment $Xa area_debt_total_base [aweight=w1], cluster (areaid)
-est store BancoMonto1
+stesto BancoMonto1
 
 reg informal_amt_1 treatment $Xa area_debt_total_base [aweight=w1], cluster (areaid)
-est store InformalMonto1
+stesto InformalMonto1
 
-outreg2 [SpandanaMonto1 OtraMFIMonto1 MFIMonto1 BancoMonto1 InformalMonto1 ] using Tabla_reg_Punto6b.doc
+*Solo funciona para exportar la parte b //outreg2 [SpandanaMonto1 OtraMFIMonto1 MFIMonto1 BancoMonto1 InformalMonto1 ] using Tabla_reg_Punto6b.doc//
 
+outreg2 [SpandanaAcc1 OtraMFIAcc1 MFIAcc1 BancoAcc1 InformalAcc1 SpandanaMonto1 OtraMFIMonto1 MFIMonto1 BancoMonto1 InformalMonto1] using Tabla_reg_Punto6.doc, replace
 
 *7) Replique el cuadro 3, paneles A y B, columnas 1, 2 y 4. Interprete brevemente los resultados: ¿La expansión de las sucursales aumentó significativamente los activos, las inversiones y las ganancias de las empresas en el corto plazo (línea final 1) y en el mediano plazo (línea final 2)? Responda por separado para ambas líneas finales. Cuando haya efectos significativos, conviértalo en un efecto del tratamiento como una proporción de la media de control y analice su tamaño relativo.
 
