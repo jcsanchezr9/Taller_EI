@@ -61,18 +61,19 @@ global Xa area_pop_base area_business_total_base area_exp_pc_mean_base area_lite
 
 ** sugieren usar como control (area_debt_total_base) pero veo que no afecta de a mucho 
 
- * Acceso al Credito 
+  * Acceso al Credito 
  
 global P6a spandana_1 othermfi_1 anymfi_1 anybank_1 anyinformal_1 
-
 mvreg $P6a = treatment $Xa [aweight=w1] 
+eststo Cuadro2_PanelA_p6a
 
 * Montos de los Prestamos
 
 global P6b spandana_amt_1 othermfi_amt_1 anymfi_amt_1 bank_amt_1 informal_amt_1 
-
 mvreg $P6b = treatment $Xa area_debt_total_base [aweight=w1]
+eststo Cuadro2_PanelA_p6b
 
+outreg2 [Cuadro2_PanelA_p6a Cuadro2_PanelA_p6b] using Tabla_punto_6.doc, replace
 
 *7) Replique el cuadro 3, paneles A y B, columnas 1, 2 y 4. Interprete brevemente los resultados: ¿La expansión de las sucursales aumentó significativamente los activos, las inversiones y las ganancias de las empresas en el corto plazo (línea final 1) y en el mediano plazo (línea final 2)? Responda por separado para ambas líneas finales. Cuando haya efectos significativos, conviértalo en un efecto del tratamiento como una proporción de la media de control y analice su tamaño relativo.
 
