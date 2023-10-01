@@ -128,6 +128,20 @@ est store Ganancias2
 
 outreg2 [Activos1 Inversion1 Ganancias1 Activos2 Inversion2 Ganancias2] using Tabla_reg_Punto7.doc
 
+*Proporcion de Media de Control 
+
+sum bizinvestment_1 if treatment==1
+
+gen MCp7 = (435.7677/686.0529)*100 
+
+sum MCp7
+
+sum bizassets_2 if treatment==1
+
+gen MCp7b = (1337.232/6317.757)*100 
+
+sum MCp7b
+
 *8.) Replique las columnas 1, 2, 3 y 7 del Cuadro 6 Panel A para mostrar el efecto de las microfinanzas en el consumo. Explique la intuición detrás de los resultados: en términos generales, ¿el tratamiento afectó significativamente el consumo total? ¿Afectó la composición del consumo? ¿De qué manera y cómo se puede explicar por la presencia de las IMF?
 
 reg total_exp_mo_pc_1 treatment $Xa [aweight=w1], cluster (areaid)
