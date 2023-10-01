@@ -283,7 +283,9 @@ outreg2 [GananciasIV_1 ConsumoIV_2] using Tabla_reg_Punto14.doc
 *Creamos global de controles de área (estoy utilizando los que mencionan en el paper)
 global area_controles area_pop_base area_business_total_base area_exp_pc_mean_base area_literate_head_base area_literate_base
 
-reg treatment indice $area_controles, cluster(areaid)
+reg treatment indice $area_controles, cluster(areaid) 
+est store regindice
+outreg2 regindice using tabla_regindice.doc, drop ($area_controles _cons)
 
 *También mediante un diagrama de dispersión podemos observar el corte a partir del 60
 scatter treatment indice
