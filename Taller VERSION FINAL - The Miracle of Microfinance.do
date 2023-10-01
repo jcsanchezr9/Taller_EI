@@ -302,7 +302,7 @@ est store InversionRD
 reg bizprofit_1 treatment indice $area_controles if inrange(indice, 50, 70) [pweight=w1], cluster(areaid)
 est store GananciasRD
 
-outreg2 [ActivosRD InversionRD GananciasRD] using Tabla_reg_Punto18.doc, drop ($($area_controles _cons) title("Regresiones discontinuas")
+outreg2 [ActivosRD InversionRD GananciasRD] using Tabla_reg_Punto18.doc, drop ($area_controles _cons) title("Regresiones discontinuas")
 
 /*Punto 19: Prueba para evaluar el supuesto de identificación (pueden por ejemplo averiguar la ausencia de agrupamiento (o bunching) alrededor del corte, o averiguar que los controles predeterminados no parecen afectados por el tratamiento con la especificación de RD */
 
@@ -331,7 +331,7 @@ est store InversionPr
 reg bizprofit_1 treatment indice X_T $area_controles if inrange(indice, 50, 70) [pweight=w1], cluster(areaid)
 est store GananciasPr
 
-outreg2 [ActivosPr InversionPr GananciasPr] using Tabla_reg_Punto20.doc, drop (($area_controles _cons) title("Pruebas de robustez: usando polinomio")
+outreg2 [ActivosPr InversionPr GananciasPr] using Tabla_reg_Punto20.doc, drop ($area_controles _cons) title("Pruebas de robustez: usando polinomio")
 
 *Al usarlo, los resultados en bizassets_1 se vuelven significativos
 
